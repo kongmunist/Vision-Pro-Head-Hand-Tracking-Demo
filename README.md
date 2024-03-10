@@ -1,6 +1,8 @@
 Head and Hand Tracking on the Apple Vision Pro
 ===========
-Welcome! I didn't find any minimal code examples for hand and head tracking on Vision Pro, so I wrote one. The app places markers on each hand joint (and one elbow joint), and places an object above you that does tracks your head. Tested on visionOS 1.0 and 1.1
+I didn't find any minimal code examples for hand and head tracking on Vision Pro, so I wrote one. 
+
+The app places markers on each hand joint (and one elbow joint), and places an object above you that tracks your head. Tested on visionOS 1.0 and 1.1
 
 (Multicolored wrist joint is because two of the joint names map to the same point)
 ![Single hand with trackers](README_media/singlehand.png)
