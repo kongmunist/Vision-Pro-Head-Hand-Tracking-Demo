@@ -62,7 +62,7 @@
 		16891EDB2B7B2FB800C6F0B3 /* Developer_Publisher.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Developer_Publisher.xcassets; sourceTree = "<group>"; };
 		16C95AE42B5E762400CF0FED /* 🛠️MenuTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "🛠️MenuTop.swift"; sourceTree = "<group>"; };
 		16C95AE62B5E7BFF00CF0FED /* 🛠️AboutPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "🛠️AboutPanel.swift"; sourceTree = "<group>"; };
-		6E6062702B9D39A200ED5FC1 /* andyhead3d2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = andyhead3d2.usdz; sourceTree = SOURCE_ROOT; };
+		6E6062702B9D39A200ED5FC1 /* andyhead3d2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = andyhead3d2.usdz; path = HeadHandsDemo/andyhead3d2.usdz; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
