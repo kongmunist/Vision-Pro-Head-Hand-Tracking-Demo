@@ -1,0 +1,141 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "About" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリについて"
+          }
+        }
+      }
+    },
+    "About App" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリについて"
+          }
+        }
+      }
+    },
+    "Apple Vision Pro" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Code extended by Andy Kong (https://andykong.org) from the HandsRuler app (https://github.com/FlipByBlink/HandsRuler)" : {
+
+    },
+    "Credits" : {
+
+    },
+    "Exit" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了"
+          }
+        }
+      }
+    },
+    "Fix / Unfix a pointer by indirect tap." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間接タップでポインターを固定できます。"
+          }
+        }
+      }
+    },
+    "Hand tracking authorization:" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ハンドトラッキング許可状況:"
+          }
+        }
+      }
+    },
+    "HandsRuler" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HandsRuler"
+          }
+        }
+      }
+    },
+    "Head model: Andy Kong" : {
+
+    },
+    "Head tracking is above you :)" : {
+
+    },
+    "Major (blue) and minor (green) hand joints are labeled" : {
+
+    },
+    "Measurement of the distance between the fingers." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指と指の間の距離を測ります。"
+          }
+        }
+      }
+    },
+    "Setting" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始"
+          }
+        }
+      }
+    },
+    "Unit" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "単位"
+          }
+        }
+      }
+    },
+    "VisionOS: hand + head tracking demo" : {
+
+    }
+  },
+  "version" : "1.0"
+}
