@@ -1,7 +1,6 @@
 Head and Hand Tracking on the Apple Vision Pro
 ===========
 
-(Multicolored wrist joint is because two of the joint names map to the same point)
 ![Single hand with trackers](README_media/singlehand.png)
 
 I didn't find any minimal code examples for hand and head tracking on Vision Pro, so I wrote one. 
