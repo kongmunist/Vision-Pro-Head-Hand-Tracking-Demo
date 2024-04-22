@@ -11,7 +11,6 @@ struct HeadHandsDemo: App {
         ImmersiveSpace(id: "immersiveSpace") {
             🌐RealityView()
         }
-//        ImmersiveSpace(id)
     }
     
     init() {
