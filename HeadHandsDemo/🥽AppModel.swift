@@ -42,7 +42,7 @@ class 🥽AppModel: ObservableObject {
         .forearmArm, .forearmWrist
     ]
 
-    // only one duplicate, the thumbIntermediateBase 
+    // only one duplicate, the thumbIntermediateBase
     
     let majorBalls: [Entity] = 🧩Entity.majorBalls(numBalls: 30);
     let minorBalls: [Entity] = 🧩Entity.minorBalls(numBalls: 24);
@@ -88,8 +88,14 @@ class 🥽AppModel: ObservableObject {
             return nil
         }
         
-//        print("ran detectCustomTaps")
-        
+        if (touching("rightThumbTip", "leftThumbTip")){
+            colorJoint("rightThumbTip", .red)
+            colorJoint("leftThumbTip", .red)
+        } else{
+            colorJoint("rightThumbTip", .cyan)
+            colorJoint("leftThumbTip", .cyan)
+        }
+         
         return 0
     }
     
@@ -100,7 +106,104 @@ class 🥽AppModel: ObservableObject {
     public var rightPosition: SIMD3<Float> {
         self.majorBalls[21].position
     }
+    
+    
+    
+    // Variables that determine "close" and "touching" for joints
+    var closeToThresh: Float = 0.05;
+    var touchingThresh: Float = 0.015;
+
+    let rightHandOffset = 15;
+    var jointMapping: [String: Int] = [:]
+    
+    init() {
+        jointMapping = [
+            "leftThumbBase": 0, "leftThumbTip": 1,
+            "leftIndexBase": 2, "leftIndexKnuckle": 3, "leftIndexTip": 4,
+            "leftMiddleBase": 5, "leftMiddleKnuckle": 6, "leftMiddleTip": 7,
+            "leftRingBase": 8, "leftRingKnuckle": 9, "leftRingTip": 10,
+            "leftPinkyBase": 11, "leftPinkyKnuckle": 12, "leftPinkyTip": 13,
+            "leftWrist": 14,
+            "rightThumbBase": rightHandOffset + 0, "rightThumbTip": rightHandOffset + 1,
+            "rightIndexBase": rightHandOffset + 2, "rightIndexKnuckle": rightHandOffset + 3, "rightIndexTip": rightHandOffset + 4,
+            "rightMiddleBase": rightHandOffset + 5, "rightMiddleKnuckle": rightHandOffset + 6, "rightMiddleTip": rightHandOffset + 7,
+            "rightRingBase": rightHandOffset + 8, "rightRingKnuckle": rightHandOffset + 9, "rightRingTip": rightHandOffset + 10,
+            "rightPinkyBase": rightHandOffset + 11, "rightPinkyKnuckle": rightHandOffset + 12, "rightPinkyTip": rightHandOffset + 13,
+            "rightWrist": rightHandOffset + 14
+        ]
+        
+//        lighter = await 🧩Entity.lighter()!;
+    }
 }
+
+
+// We're gonna write the natural language hand query type stuff here. Optional threshold param
+extension 🥽AppModel {
+    func getJoint(_ jointname: String) -> Entity {
+        return self.majorBalls[jointMapping[jointname]!]
+    }
+    
+    func positionOfJoint(_ jointName: String) -> simd_float3? {
+//        return jointMapping[jointName].flatMap { self.majorBalls[$0].position }
+        return self.majorBalls[jointMapping[jointName]!].position
+    }
+
+    func jointDist(_ joint1: String, _ joint2: String) -> Float {
+        let pos1 = self.positionOfJoint(joint1)!
+        let pos2 = self.positionOfJoint(joint2)!
+        return distance(pos1, pos2)
+    }
+
+    func closeTo(_ joint1: String, _ joint2: String, thresh: Float = -1) -> Bool {
+        let thresh = thresh < 0 ? closeToThresh : thresh
+        return jointDist(joint1, joint2) < thresh
+    }
+
+    func closeTo(_ joints: [String], thresh: Float = -1) -> Bool {
+        let positions = joints.compactMap { positionOfJoint($0) }
+        let dists = zip(positions, positions[1...]).map { distance($0, $1) }
+        return dists.allSatisfy { $0 < thresh }
+    }
+
+    func touching(_ joint1: String, _ joint2: String, thresh: Float = -1) -> Bool {
+        let thresh = thresh < 0 ? touchingThresh : thresh
+        return jointDist(joint1, joint2) < thresh
+    }
+
+    // Currently this finds the avg of distances from first joint to all others. This is not preferred (I wanted pair-wise avg min jointdist) but kinda works for now.
+    func touching(_ joints: [String], thresh: Float = -1) -> Bool {
+        let thresh = thresh < 0 ? touchingThresh : thresh
+        let positions = joints.compactMap { positionOfJoint($0) }
+         let dists = zip(positions, positions[1...]).map { distance($0, $1) }
+        return dists.reduce(0, +) / Float(dists.count) < thresh
+    }
+
+    func makeAllJointsInvisible() {
+        for ball in self.majorBalls {
+            ball.components.set(OpacityComponent(opacity:0))
+        }
+        for ball in self.minorBalls {
+            ball.components.set(OpacityComponent(opacity:0))
+        }
+    }
+    
+    
+    // Convenience function to change the color of a joint ball
+    func colorJointI(_ jointIndex: Int, _ color: UIColor) {
+        self.majorBalls[jointIndex].components.set(ModelComponent(mesh: .generateSphere(radius: 0.005), materials: [SimpleMaterial(color: color, isMetallic: false)]))
+    }
+
+    func colorJoint(_ jointName: String, _ color: UIColor) {
+        colorJointI(jointMapping[jointName]!, color)
+    }
+
+    func colorJoints(_ jointNames: [String], _ color: UIColor) {
+         for jointName in jointNames {
+             colorJoint(jointName, color)
+         }
+    }
+}
+
 
 private extension 🥽AppModel {
     private func processHandUpdates() async {
